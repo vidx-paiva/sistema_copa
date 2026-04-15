@@ -1,0 +1,63 @@
+/* Reset básico e Fontes */
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    font-family: 'Segoe UI', Arial, sans-serif; 
+}
+
+/* Fundo em degradê azul conforme solicitado */
+body {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+}
+
+header {
+    margin: 40px 0;
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.container {
+    background: white;
+    color: #333;
+    width: 90%;
+    max-width: 600px;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+h2 { margin-bottom: 20px; color: #1e3c72; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+
+/* Formulários */
+label { display: block; margin: 10px 0 5px; font-weight: bold; }
+input { 
+    width: 100%; 
+    padding: 12px; 
+    margin-bottom: 15px; 
+    border: 1px solid #ccc; 
+    border-radius: 6px; 
+}
+
+/* Botões */
+.btn-group { display: flex; gap: 10px; margin-top: 10px; }
+.btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.btn-save { background: #28a745; color: white; flex: 2; }
+.btn-save:hover { background: #218838; }
+.btn-back { background: #6c757d; color: white; flex: 1; }
+.btn-back:hover { background: #5a6268; }
