@@ -36,18 +36,18 @@ class SelecaoController {
             exit;
         }
 
-        $nome    = trim($_POST['nome']    ?? '');
-        $grupo   = strtoupper(trim($_POST['grupo']   ?? ''));
-        $titulos = (int) ($_POST['titulos'] ?? 0);
+        $nome          = trim($_POST['nome']          ?? '');
+        $grupo         = strtoupper(trim($_POST['grupo']         ?? ''));
+        $titulos       = (int) ($_POST['titulos']       ?? 0);
+        $participacoes = (int) ($_POST['participacoes'] ?? 0);
 
-        // Validação básica
         if ($nome === '' || $grupo === '') {
             $erro = 'Nome e Grupo são obrigatórios.';
             require_once __DIR__ . '/../views/create.php';
             return;
         }
 
-        $this->model->create($nome, $grupo, $titulos);
+        $this->model->create($nome, $grupo, $titulos, $participacoes);
         header('Location: /selecoes/listar?sucesso=criado');
         exit;
     }
@@ -67,25 +67,26 @@ class SelecaoController {
     }
 
     // ── UPDATE (POST) ─────────────────────────────────────────────────────────
-    public function atualizar(): void {
+        public function atualizar(): void {
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
             header('Location: /selecoes/listar');
             exit;
         }
 
-        $id      = (int) ($_POST['id']      ?? 0);
-        $nome    = trim($_POST['nome']       ?? '');
-        $grupo   = strtoupper(trim($_POST['grupo']    ?? ''));
-        $titulos = (int) ($_POST['titulos']  ?? 0);
+        $id            = (int) ($_POST['id']            ?? 0);
+        $nome          = trim($_POST['nome']             ?? '');
+        $grupo         = strtoupper(trim($_POST['grupo'] ?? ''));
+        $titulos       = (int) ($_POST['titulos']        ?? 0);
+        $participacoes = (int) ($_POST['participacoes']  ?? 0);
 
         if ($nome === '' || $grupo === '') {
-            $selecao = ['id' => $id, 'nome' => $nome, 'grupo' => $grupo, 'titulos' => $titulos];
+            $selecao = ['id' => $id, 'nome' => $nome, 'grupo' => $grupo, 'titulos' => $titulos, 'participacoes' => $participacoes];
             $erro    = 'Nome e Grupo são obrigatórios.';
             require_once __DIR__ . '/../views/edit.php';
             return;
         }
 
-        $this->model->update($id, $nome, $grupo, $titulos);
+        $this->model->update($id, $nome, $grupo, $titulos, $participacoes);
         header('Location: /selecoes/listar?sucesso=atualizado');
         exit;
     }

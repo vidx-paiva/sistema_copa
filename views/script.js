@@ -1,33 +1,33 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    const modal = document.getElementById("modalSelecao");
-    const btn = document.getElementById("btnNovaSelecao");
-    const btnFechar = document.getElementById("btnFechar");
+  // ── Dark / Light mode ──────────────────────────────
+  const toggle = document.getElementById('themeToggle');
+  const label  = document.getElementById('themeLabel');
 
-    if (!modal || !btn) {
-        console.error("Erro: Modal ou botão não encontrados.");
-        return;
-    }
+  const saved = localStorage.getItem('theme');
+  if (saved === 'light') {
+    document.body.classList.add('light');
+    if (label) label.textContent = 'Light';
+  }
 
-    // Abrir modal
-    btn.addEventListener("click", () => {
-        modal.classList.add("show");
+  if (toggle) {
+    toggle.addEventListener('click', () => {
+      document.body.classList.toggle('light');
+      const isLight = document.body.classList.contains('light');
+      localStorage.setItem('theme', isLight ? 'light' : 'dark');
+      if (label) label.textContent = isLight ? 'Light' : 'Dark';
     });
+  }
 
-    // Fechar no botão X
-    if (btnFechar) {
-        btnFechar.addEventListener("click", () => {
-            modal.classList.remove("show");
-        });
-    } else {
-        console.warn("Botão fechar não encontrado");
-    }
+  // ── Modal ──────────────────────────────────────────
+  const modal    = document.getElementById("modalSelecao");
+  const btnOpen  = document.getElementById("btnNovaSelecao");
+  const btnClose = document.getElementById("btnFechar");
 
-    // Fechar clicando fora
-    window.addEventListener("click", (event) => {
-        if (event.target === modal) {
-            modal.classList.remove("show");
-        }
-    });
+  if (modal && btnOpen) {
+    btnOpen.addEventListener("click", () => modal.classList.add("show"));
+    if (btnClose) btnClose.addEventListener("click", () => modal.classList.remove("show"));
+    window.addEventListener("click", e => { if (e.target === modal) modal.classList.remove("show"); });
+  }
 
 });

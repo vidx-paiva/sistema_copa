@@ -87,7 +87,7 @@
                 <select id="grupo" name="grupo" required>
                     <option value="">— Selecione —</option>
                     <?php
-                    $grupos = ['A','B','C','D','E','F','G','H'];
+                    $grupos = ['A','B','C','D','E','F','G','H','I','J','K','L'];
                     $grupoAtual = strtoupper($_POST['grupo'] ?? '');
                     foreach ($grupos as $g):
                     ?>
@@ -98,11 +98,19 @@
             </div>
 
             <div class="form-group">
+                <label for="participacoes">Participações em Copas</label>
+                <input type="number" id="participacoes" name="participacoes" min="0" max="30"
+                    placeholder="0"
+                    value="<?= (int)($_POST['participacoes'] ?? 0) ?>">
+                <small>Número de vezes que a seleção participou de uma Copa do Mundo</small>
+            </div>
+
+            <div class="form-group">
                 <label for="titulos">Títulos Mundiais</label>
                 <input type="number" id="titulos" name="titulos" min="0" max="10"
-                       placeholder="0"
-                       value="<?= (int)($_POST['titulos'] ?? 0) ?>">
-                <small>Número de Copas do Mundo vencidas</small>
+                    placeholder="0"
+                    value="<?= (int)($_POST['titulos'] ?? 0) ?>">
+                <small>Número de títulos mundiais conquistados</small>
             </div>
 
             <div class="btn-row">
